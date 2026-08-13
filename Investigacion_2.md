@@ -17,3 +17,10 @@ En la prueba, la versión secuencial tardó 0.242174 segundos, mientras que la v
 
 ### Runtime
 
+Runtime es un mecanismo de delegación de trabajo, a diferencia de los diferentes tipos de planificación de distribución de carga. Específicamente, se utiliza para evitar la recompilación durante el Fine-Tuning al permitir ejecutar benchmarks automatizados y compilar el código una sola vez. Además, tiene la ventaja de la portabilidad en donde se permite que un script de despliegue ajuste la distribución de acuerdo con los recursos físicos disponibles en el servidor destino. Por último, tiene la ventaja de flexibilidad en donde cambios en dato de entrada pueden ser manejados por la distriibución requerida.  
+
+En este ejemplo, el tamaño del chunk depende  valor que se le asignado a la variable OMP_SCHEDULE antes de la ejecución. Para el OMP_SCHEDULE estático, se dividen 10 millones de iteraciones en partes exactamente iguales entre el número total de hilos. Mientras para el dinámico se define un chunk fijo de 10,000 iteraciones y si un hilo termina,  solicita el siguiente disponible. 
+
+## Resultado de la ejecución
+
+![Resultado de schedule()](ejecucion.png)
